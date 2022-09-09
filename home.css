@@ -49,7 +49,7 @@ input[type=text] {
 	position: relative;/*元素定位类型*/
 	background-color: red;
 	animation-duration: 4s;/*动画持续时长*/
-	animation-iteration-count: 1;/*动画持续次数,infinite为循环*/
+	animation-iteration-count: infinite;/*动画持续次数,infinite为循环*/
 }
 @keyframes example {/*K关键帧*/
 	0%   {background-color:red; left:0%; top:0%;}
