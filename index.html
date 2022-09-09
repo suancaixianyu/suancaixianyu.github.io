@@ -140,13 +140,23 @@
 	<h1>22</h1>
 		<p id="model">232</p>
 			<div class="" id="div1">12112</div>
-
+			<button onclick="divname()">点击切换颜色</button>
+			<div class="div2" id="div2">切换此处颜色</div>
 		<script>
 			div1.onmouseenter = function (){
     			div1.className = "newdiv1";
     		};
     		div1.onmouseleave = function (){
     			div1.className = "div1";
+    		}
+    		function divname() {
+    			// 调用动画
+    			if (div2.className=="div2") {
+    				div2.className = "newdiv2";
+    			}
+    			else{
+    				div2.className = "div2";
+    			}
     		}
 		</script>
 </body>
