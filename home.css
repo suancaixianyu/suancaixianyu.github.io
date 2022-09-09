@@ -70,3 +70,15 @@ input[type=text] {
     width:200px;
     height:130px;
 }
+.div2{
+	width: 30%;
+	height: 30%;
+	background-color: red;
+	transition: 0.5s;
+}
+.newdiv2{
+	width: 30%;
+	height: 30%;
+	background-color: yellow;
+	transition: 0.5s;
+}
