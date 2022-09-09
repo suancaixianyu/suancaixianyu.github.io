@@ -1,0 +1,72 @@
+body{
+	background:url(https://alifei03.cfp.cn/creative/vcg/nowater800/new/VCG41N1323541783.jpg?x-oss-process=image/format,webp) repeat-y 100% 100%;
+	background-color:#c0dce7;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+button{
+	background-color: #66ccff;/*按键颜色*/ 
+	border: none;
+	color: white;/*文字颜色*/ 
+	text-align: center;
+	text-decoration: none;
+	padding: 8px 20px;/*按键宽度与文字边界距离*/ 
+	display: inline-block;
+	font-size:16px;/*字体大小*/ 
+	margin: 5px 5px;/*按键离其他元素的距离,auto为居中*/ 
+	cursor: pointer;
+	border-radius: 12px;/*圆角大小*/
+}
+input[type=text] {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+#p[type=text] {
+  width: 10%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+#illustrate{
+	width: 80%;
+	height: 100%;
+	background-color: #fff1c0;/*背景颜色*/
+	background-clip: content-box;/*背景裁剪至,content-box: 内容框.padding-box: 内边距框.border-box: 外边框*/
+	margin: 0 auto;
+	border-image:url(背景.png) 15 25 stretch;/*图片边框,选择边框四周保留范围，其他范围会被自动处理,stretch为拉伸*/
+	border-style: solid;/*添加边框样式*/
+ 	border-width: 15px 25px;/*边框大小,图片边框建议与保留部分一致*/
+}
+#model{
+	width: 20%;
+	height: 10%;
+	animation-name: example;/*添加动画先命名*/
+	position: relative;/*元素定位类型*/
+	background-color: red;
+	animation-duration: 4s;/*动画持续时长*/
+	animation-iteration-count: 1;/*动画持续次数,infinite为循环*/
+}
+@keyframes example {/*K关键帧*/
+	0%   {background-color:red; left:0%; top:0%;}
+	50%  {background-color:blue; left:60%; top:0%;}
+	100% {background-color:red; left:0%; top:0%;}
+
+}
+.div1 {
+	background-color: red;
+    width:22px;
+    height:22px;
+    transition: 0.4s;
+}
+.newdiv1 {
+	background-color: red;
+    transform: translatex(12px);
+    transition: 0.3s;
+    width:200px;
+    height:130px;
+}
