@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>pid解析</title>
+</head>
+<body>
+
+<h2>阿西吧</h2>
+	<p>没做呢</p>
+	<input type="text" id="q" value=""><button onclick="acgmx()">查看</button>
+	<p id="title">标题：</p>
+	<p id="pid">作品ID：</p>
+	<p id="author">作者：</p>
+	<p id="uid">作者ID：</p>
+	<p id="WH">图片尺寸：</p>
+	<p id="tags">标签：</p><br>
+
+<script>
+function acgmx(){
+	document.getElementById("tags").innerHTML = "";
+	var q = document.getElementById("q").value;
+	var pixiv = new XMLHttpRequest();//建立所需的对象
+	pixiv.open('GET', 'http://ovooa.com/API/Pximg/', true);//打开链接
+	pixiv.send();//发送请求
+	pixiv.onreadystatechange = function () {
+			if (pixiv.readyState == 4 && pixiv.status == 200) {
+			var json = pixiv.responseText;//获取文本
+				obj = JSON.parse(json);//转换为json字符串
+			//获取数据
+			document.getElementById("title").innerHTML = "标题："+obj.data.title;
+			document.getElementById("pid").innerHTML = "作品ID："+obj.data.pid;
+			document.getElementById("author").innerHTML = "作者："+obj.data.author;
+			document.getElementById("uid").innerHTML = "作者ID："+obj.data.uid;
+			document.getElementById("WH").innerHTML = "图片尺寸："+obj.data.width+"*"+obj.data.height;
+			document.getElementById("pixivimg").src = "https://px3.rainchan.win/img/original/"+obj.data.pid;
+			document.getElementById("pixivurl").href = obj.data.urls.original;
+			for (var i = 0; i < obj.data.tags.length; i++) {
+				var x = obj.data.tags[i] + "；";
+				var y = document.getElementById("tags").innerHTML;
+				document.getElementById("tags").innerHTML = y+x;
+			}
+		}
+	}
+}
+			
+</script>
+
+</body>
+</html>
