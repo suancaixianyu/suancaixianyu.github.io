@@ -8,22 +8,24 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body onload="acgmx()">
-	<h2>PID解析</h2>
+	<h1>PID解析</h1>
 		<p>部分id无法识别，原因我也不知道捏，按F12查看报错内容</p>
-		<p>切换图片加载慢的话，是你的网络问题</p>
 		输入pid<input type="text" id="q" value="59580629"><button onclick="acgmx()">查看</button>
-		<p id="title">标题：</p>
-		<p id="pid">作品ID：</p>
-		<p id="author">作者：</p>
-		<p id="uid">作者ID：</p>
-		<p id="pageCount"></p>
-		<p id="WH">图片尺寸：</p>
-		<p id="tags">标签：</p>
+		<div id="illustrate">
+			<p id="title">标题：</p>
+			<p id="pid">作品ID：</p>
+			<p id="author">作者：</p>
+			<p id="uid">作者ID：</p>
+			<p id="pageCount"></p>
+			<p id="WH">图片尺寸：</p>
+			<p id="tags">标签：</p>
+		</div>
 		<div id="buts">
 			<button onclick="imgtool('up')" class="but"><</button>
-			<p id="p"></p>
+			<p id="p" class="but"></p>
 			<button onclick="imgtool('wd')" class="but">></button>
 		</div>
+		<br><br><br>
 		<a id="pixivurl" href="#A"><img src="" id="pixivimg" width="80%" height="80%"></a>
 		<p id="pages"></p>
 
