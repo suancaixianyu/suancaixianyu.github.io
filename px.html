@@ -1,105 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>pid解析</title>
-<link rel="stylesheet" type="text/css" href="css/home.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<meta charset="utf-8">
+	<title>pid解析</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body onload="acgmx()">
-
-<h2>PID解析</h2>
-	<p>部分id无法识别，原因我也不知道捏，按F12查看报错内容</p>
-	输入pid<input type="text" id="q" value="59580629"><button onclick="acgmx()">查看</button>
-	<p id="title">标题：</p>
-	<p id="pid">作品ID：</p>
-	<p id="author">作者：</p>
-	<p id="uid">作者ID：</p>
-	<p id="pageCount"></p>
-	<p id="WH">图片尺寸：</p>
-	<p id="tags">标签：</p>
-	<div id="buts">
-		<button onclick="imgtool('up')" class="but"><</button>
-		<p id="p"></p>
-		<button onclick="imgtool('wd')" class="but">></button>
-	</div>
-	<a id="pixivurl" href="#A"><img src="" id="pixivimg" width="80%" height="80%"></a>
-	<p id="pages"></p>
+	<h2>PID解析</h2>
+		<p>部分id无法识别，原因我也不知道捏，按F12查看报错内容</p>
+		输入pid<input type="text" id="q" value="59580629"><button onclick="acgmx()">查看</button>
+		<p id="title">标题：</p>
+		<p id="pid">作品ID：</p>
+		<p id="author">作者：</p>
+		<p id="uid">作者ID：</p>
+		<p id="pageCount"></p>
+		<p id="WH">图片尺寸：</p>
+		<p id="tags">标签：</p>
+		<div id="buts">
+			<button onclick="imgtool('up')" class="but"><</button>
+			<p id="p"></p>
+			<button onclick="imgtool('wd')" class="but">></button>
+		</div>
+		<a id="pixivurl" href="#A"><img src="" id="pixivimg" width="80%" height="80%"></a>
+		<p id="pages"></p>
 
 <script>
-function acgmx(){
-	document.getElementById("tags").innerHTML = "";
-	var q = document.getElementById("q").value;
-	var pixiv = new XMLHttpRequest();//建立所需的对象
-	pixiv.open('GET', 'https://pximg.rainchan.win/imginfo?img_id=' + q, true);//打开链接
-	pixiv.send();//发送请求
-	pixiv.onreadystatechange = function () {
-			if (pixiv.readyState == 4 && pixiv.status == 200) {
-			var json = pixiv.responseText;//获取文本
-				obj = JSON.parse(json);//转换为json字符串
-				if (obj.urls.original=="") {
-					var str = obj.profileImageUrl;
-					var original = str.replace("i.pximg.net","i.pixiv.re");
+	function acgmx(){
+		document.getElementById("tags").innerHTML = "";
+		var q = document.getElementById("q").value;
+		var pixiv = new XMLHttpRequest();//建立所需的对象
+		pixiv.open('GET', 'https://pximg.rainchan.win/imginfo?img_id=' + q, true);//打开链接
+		pixiv.send();//发送请求
+		pixiv.onreadystatechange = function () {
+				if (pixiv.readyState == 4 && pixiv.status == 200) {
+				var json = pixiv.responseText;//获取文本
+					obj = JSON.parse(json);//转换为json字符串
+					if (obj.urls.original=="") {
+						var str = obj.profileImageUrl;
+						var original = str.replace("i.pximg.net","i.pixiv.re");
+					}
+					else if (obj.urls.original!=""){
+						var str = obj.urls.original;
+						var original = str.replace("i.pximg.net","i.pixiv.re");
+					}
+					//获取数据
+					document.getElementById("title").innerHTML = "标题："+obj.title;
+					document.getElementById("pid").innerHTML = "作品ID："+obj.illustId;
+					document.getElementById("author").innerHTML = "作者："+obj.userName;
+					document.getElementById("uid").innerHTML = "作者ID："+obj.userId;
+					document.getElementById("pageCount").innerHTML = "共"+obj.pageCount+"P";
+					document.getElementById("pages").innerHTML = original;
+					document.getElementById("WH").innerHTML = "图片尺寸："+obj.width+"*"+obj.height;
+					document.getElementById("pixivimg").src = "https://px3.rainchan.win/img/original/"+obj.illustId;
+					document.getElementById("pixivurl").href = original;
+				for (var i = 0; i < obj.tags.tags.length; i++) {
+					var x = obj.tags.tags[i].tag + "；";
+					var y = document.getElementById("tags").innerHTML;
+					document.getElementById("tags").innerHTML = y+x;
 				}
-				else if (obj.urls.original!=""){
-					var str = obj.urls.original;
-					var original = str.replace("i.pximg.net","i.pixiv.re");
+				if (obj.pageCount==1) {
+	  				$("#buts").hide();
 				}
-				//获取数据
-				document.getElementById("title").innerHTML = "标题："+obj.title;
-				document.getElementById("pid").innerHTML = "作品ID："+obj.illustId;
-				document.getElementById("author").innerHTML = "作者："+obj.userName;
-				document.getElementById("uid").innerHTML = "作者ID："+obj.userId;
-				document.getElementById("pageCount").innerHTML = "共"+obj.pageCount+"P";
-				document.getElementById("pages").innerHTML = original;
-				document.getElementById("WH").innerHTML = "图片尺寸："+obj.width+"*"+obj.height;
-				document.getElementById("pixivimg").src = "https://px3.rainchan.win/img/original/"+obj.illustId;
-				document.getElementById("pixivurl").href = original;
-			for (var i = 0; i < obj.tags.tags.length; i++) {
-				var x = obj.tags.tags[i].tag + "；";
-				var y = document.getElementById("tags").innerHTML;
-				document.getElementById("tags").innerHTML = y+x;
-			}
-			if (obj.pageCount==1) {
-  				$("#buts").hide();
-			}
-			else if (obj.pageCount>1) {
-				$("#buts").show();
+				else if (obj.pageCount>1) {
+					$("#buts").show();
+				}
 			}
 		}
 	}
-}
 
-function imgtool(air) {
-		// 翻页
-		var a = document.getElementById("pages").innerHTML;//直链
-		var jpg = a.replace(/.*_p\d+/g,"");//获取后缀
-		var id = a.replace(/.*_/g,"");//获取链接P数
-		var id = id.replace(/[^0-9]+/g,"");//获取链接P数
-		var b = document.getElementById("pageCount").innerHTML;
-		var cuont = b.replace(/[^0-9]+/g,"");//当前P
-		var imgurl = a.replace(/_p.*/g,"");//获取无后缀图片连接
-		var c1 = parseInt(id)+1;
-		var c2 = parseInt(id)-1;
-		if (air=="wd") {
-			if (c1<cuont) {
-				document.getElementById("pixivimg").src = imgurl+"_p"+c1+jpg;
-				document.getElementById("p").innerHTML = c1;
-				document.getElementById("pages").innerHTML = imgurl+"_p"+c1+jpg;
+	function imgtool(air) {
+			// 翻页
+			var a = document.getElementById("pages").innerHTML;//直链
+			var jpg = a.replace(/.*_p\d+/g,"");//获取后缀
+			var id = a.replace(/.*_/g,"");//获取链接P数
+			var id = id.replace(/[^0-9]+/g,"");//获取链接P数
+			var b = document.getElementById("pageCount").innerHTML;
+			var cuont = b.replace(/[^0-9]+/g,"");//当前P
+			var imgurl = a.replace(/_p.*/g,"");//获取无后缀图片连接
+			var c1 = parseInt(id)+1;
+			var c2 = parseInt(id)-1;
+			if (air=="wd") {
+				if (c1<cuont) {
+					document.getElementById("pixivimg").src = imgurl+"_p"+c1+jpg;
+					document.getElementById("p").innerHTML = c1;
+					document.getElementById("pages").innerHTML = imgurl+"_p"+c1+jpg;
+				}
+				else {
+					document.getElementById("pixivimg").src = imgurl+"_p0"+jpg;
+					document.getElementById("p").innerHTML = "0";
+					document.getElementById("pages").innerHTML = imgurl+"_p0"+jpg;
+				}
 			}
-			else {
-				document.getElementById("pixivimg").src = imgurl+"_p0"+jpg;
-				document.getElementById("p").innerHTML = "0";
-				document.getElementById("pages").innerHTML = imgurl+"_p0"+jpg;
+			else if (air=="up") {
+				if (c2>=0) {
+					document.getElementById("pixivimg").src = imgurl+"_p"+c2+jpg;
+					document.getElementById("p").innerHTML = c2;
+					document.getElementById("pages").innerHTML = imgurl+"_p"+c2+jpg;
+				}
 			}
-		}
-		else if (air=="up") {
-			if (c2>=0) {
-				document.getElementById("pixivimg").src = imgurl+"_p"+c2+jpg;
-				document.getElementById("p").innerHTML = c2;
-				document.getElementById("pages").innerHTML = imgurl+"_p"+c2+jpg;
-			}
-		}
 	}	
 </script>
 

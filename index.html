@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<title>咸鱼的学习站点</title>
 </head>
@@ -135,7 +135,7 @@
 						document.getElementById("tags").innerHTML = "";
 						var acgmx = new XMLHttpRequest();
 						var q = document.getElementById("q").value;
-						acgmx.open('GET', 'https://api.acgmx.com/public/search?q=' + q + '&offset=' + 80, true);
+						acgmx.open('GET', 'https://api.acgmx.com/public/search?q=' + q + '&offset=100', true);
 						acgmx.send();
 						acgmx.onreadystatechange = function () {
 							var acgx = acgmx.responseText;
@@ -164,7 +164,8 @@
 	<h1><a id="资源存放">资源存放，可用的api</h1>
 		<p>
 			随机一言：https://api.moedog.org/hitokoto/<br>
-			网易云：https://api.moedog.org/163/
+			网易云：https://api.moedog.org/163/<br>
+			pid详情：https://pximg.rainchan.win/imginfo?img_id=
 		</p>
 
 	<HR align=center width=90% color=#987cb9 SIZE=1>
