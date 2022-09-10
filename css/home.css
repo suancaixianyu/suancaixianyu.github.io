@@ -37,7 +37,7 @@ input[type=text] {
 	background-color: #fff1c0;/*背景颜色*/
 	background-clip: content-box;/*背景裁剪至,content-box: 内容框.padding-box: 内边距框.border-box: 外边框*/
 	margin: 0 auto;
-	border-image:url(imgs/背景.png) 15 25 stretch;/*图片边框,选择边框四周保留范围，其他范围会被自动处理,stretch为拉伸*/
+	border-image:url(imgs/bubble.png) 15 25 stretch;/*图片边框,选择边框四周保留范围，其他范围会被自动处理,stretch为拉伸*/
 	border-style: solid;/*添加边框样式*/
  	border-width: 15px 25px;/*边框大小,图片边框建议与保留部分一致*/
 }
