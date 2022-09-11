@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(237,237,237);
+}
+.bj {
+    height: 400px;
+    width: 350px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+input[type=text] {
+    width: 80%;
+    height: 10%;
+    border-radius: 12px;
+    margin: 15px auto;
+    padding: 8px 10px;
+    box-sizing: border-box;
+}
+input[type=password] {
+    width: 80%;
+    height: 10%;
+    border-radius: 12px;
+    margin: 15px auto;
+    padding: 8px 10px;
+    box-sizing: border-box;
+}
+button {
+    background-color: #66ccff;/*按键颜色*/ 
+    border: none;
+    color: white;/*文字颜色*/ 
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 40px;/*按键宽度与文字边界距离*/ 
+    display: inline-block;
+    font-size:16px;/*字体大小*/ 
+    margin: 5px 15px;/*按键离其他元素的距离,auto为居中*/ 
+    cursor: pointer;
+    border-radius: 12px;/*圆角大小*/
+}
+p{
+    color: red;
+}

@@ -1,8 +1,8 @@
 body{
 	background-color:#c0dce7;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 button{
 	background-color: #66ccff;/*按键颜色*/ 
@@ -54,7 +54,27 @@ input[type=text] {
 	0%   {background-color:red; left:0%; top:0%;}
 	50%  {background-color:blue; left:60%; top:0%;}
 	100% {background-color:red; left:0%; top:0%;}
+}
+#but{
+	width: 75%;
+	background-color: rgba(0, 0, 0,0);/*按键颜色*/ 
+	margin: 0 auto;
+}
 
+a:link {
+	color: blue;
+}
+a:visited {
+	color: blue;
+}
+a:hover {
+	color: blue;
+}时
+a:active {
+	color: yellow;
+}
+.but{
+	float:left;
 }
 .div1 {
 	background-color: red;
