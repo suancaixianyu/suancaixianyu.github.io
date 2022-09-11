@@ -9,14 +9,38 @@
 <body onload="RandomImgs('Random')">
 	<h1>主页</h1><a id="主页">
 		<h2>
-			<a class="md-toc-inner" href="#随机图片">随机图片</a><br>
-			<a class="md-toc-inner" href="#pid解析">pid解析</a><br>
-			<a class="md-toc-inner" href="#随机色图">随机色图</a><br>
-			<a class="md-toc-inner" href="#资源存放">资源存放，可用的api</a><br>
-			<a class="md-toc-inner" href="px.html">px</a><br>
+			<a class="md" href="#随机图片">随机图片</a><br>
+			<a class="md" href="#pid解析">pid解析</a><br>
+			<a class="md" href="#随机色图">随机色图</a><br>
+			<a class="md" href="#资源存放">资源存放，可用的api</a><br>
+			<a class="md" href="px.html">pid查看</a><br>
+			<a class="md" href="login.html">一个不存在的登录界面</a>
 		</h2>
 		<p>总访问次数：</p>
-		<img src="https://api.moedog.org/count/@:xianyu?theme=rule34" alt=":xianyu" />
+		<button id="but" onclick="count()"><img id="thme" src="https://api.moedog.org/count/@:xianyu?theme=rule34" alt="图片计数" /></button>
+
+		<script>
+			function count() {
+				var p1 = document.getElementById("thme").src;
+				var gif = "https://api.moedog.org/count/@:xianyu?theme=rule34";
+				var au = "https://api.moedog.org/count/@:xianyuau?theme=asoul";
+				var h = "https://api.moedog.org/count/@:xianyuh?theme=gelbooru-h";
+				var g = "https://api.moedog.org/count/@:xianyugl?theme=gelbooru";
+				// 切换计数图片
+				if (p1==gif) {
+					document.getElementById("thme").src = au;
+				}
+				else if (p1==au) {
+					document.getElementById("thme").src = g;
+				}
+				else if (p1==g) {
+					document.getElementById("thme").src = h;
+				}
+				else if (p1==h) {
+					document.getElementById("thme").src = gif;
+				}
+			}
+		</script>
 
 	<HR align=center width=90% color=#987cb9 SIZE=1>
 
@@ -35,8 +59,8 @@
 
 	<HR align=center width=90% color=#987cb9 SIZE=1>
 
-	<h1><a id="pid解析">pid解析</h1>
-		<p>不是</p>
+	<h1><a id="pid解析">图片查看</h1>
+		<p>输入i.pixiv.re的图查看</p>
 		输入图片直链: <input type="text" id="imgurl" value=""><br>
 			<button onclick="imgtool('look')">查看</button>
 			<button onclick="imgtool('del')">清空</button><br>
