@@ -17,30 +17,7 @@
 			<a class="md" href="login.html">一个不存在的登录界面</a>
 		</h2>
 		<p>总访问次数：</p>
-		<button id="but" onclick="count()"><img id="thme" src="https://api.moedog.org/count/@:xianyu?theme=rule34" alt="图片计数" /></button>
-
-		<script>
-			function count() {
-				var p1 = document.getElementById("thme").src;
-				var gif = "https://api.moedog.org/count/@:xianyu?theme=rule34";
-				var au = "https://api.moedog.org/count/@:xianyuau?theme=asoul";
-				var h = "https://api.moedog.org/count/@:xianyuh?theme=gelbooru-h";
-				var g = "https://api.moedog.org/count/@:xianyugl?theme=gelbooru";
-				// 切换计数图片
-				if (p1==gif) {
-					document.getElementById("thme").src = au;
-				}
-				else if (p1==au) {
-					document.getElementById("thme").src = g;
-				}
-				else if (p1==g) {
-					document.getElementById("thme").src = h;
-				}
-				else if (p1==h) {
-					document.getElementById("thme").src = gif;
-				}
-			}
-		</script>
+		<img id="thme" src="https://api.moedog.org/count/@:xianyu?theme=rule34" alt="图片计数" />
 
 	<HR align=center width=90% color=#987cb9 SIZE=1>
 
@@ -185,17 +162,18 @@
 
 	<HR align=center width=90% color=#987cb9 SIZE=1>
 
-	<h1><a id="资源存放">资源存放，可用的api</h1>
+	<h1><a id="资源存放">资源存放，用到的api</h1>
 		<p>
-			随机一言：https://api.moedog.org/hitokoto/<br>
-			网易云：https://api.moedog.org/163/<br>
-			pid详情：https://pximg.rainchan.win/imginfo?img_id=
+			pid详情：https://pximg.rainchan.win/imginfo?img_id=<br>
+			随机图：https://iw233.cn/api.php?sort=yin<br>
+			随机涩图：https://ovooa.com/API/Pximg/<br>
+			计数器：https://api.moedog.org/count/
 		</p>
 
 	<HR align=center width=90% color=#987cb9 SIZE=1>
 
 	<h1>动画</h1>
-		<p id=“model”>移动动画</p>
+		<p id="model">移动动画</p>
 			<div class="" id="div1">放大动画</div>
 			<button onclick="divname()">点击切换颜色</button>
 			<div class="div2" id="div2">切换此处颜色</div>
