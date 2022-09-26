@@ -1,0 +1,173 @@
+body{
+	margin: 0px;
+	background-color: rgb(200,200,200);
+}
+
+/* 
+background:url(图片链接) 是否重复 左边距离 顶部距离;
+no-repeat 不重复
+repeat-x X方向重复
+repeat-y Y方向重复
+center 居中
+top 顶部边为0
+bottom 底部距离为0
+*/
+
+.list{
+	width: 100%;
+	color: black;
+	border-style: none;
+	text-align: center;
+	padding: 8px 10px;
+	background-color: rgb(230,230,230);
+}
+
+#Random_picture{
+	display: none;
+	text-align: center;
+}
+
+#Random_picture_ex{
+	display: none;
+}
+
+#PID{
+	display: none;
+}
+
+.parent {/*主页面*/
+	background-color: rgb(250, 250, 250);
+	display: grid;
+	grid-template-columns: 0.2fr 2fr 0.2fr;
+	rid-template-rows: 0.1fr 2fr 0.1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+}
+
+.div1 {/*横幅*/
+	grid-area: 1 / 1 / 2 / 4;
+	height: 65px;
+	background-color: rgb(173,205,239);
+}
+.div2 {/*设置*/
+	grid-area: 1 / 1 / 2 / 2;
+	height: 65px;
+}
+
+.set{
+	height: 32px;
+	width: 32px;
+	background: url(../imgs/set.png);
+	background-size: 32px;
+	border-radius: 50%;
+	position: absolute;
+	left: 15px;
+	top: 15px;
+}
+
+.div3 {/*logo*/
+	grid-area: 1 / 2 / 2 / 3;
+	height: 65px;
+}
+
+.logo{
+	color: wheat;
+	text-align: center;
+}
+
+.div4 {/*用户头像*/
+	grid-area: 1 / 3 / 2 / 4;
+	height: 65px;
+}
+
+.user{
+	height: 32px;
+	width: 32px;
+	background: url(../imgs/user.png);
+	background-size: 32px;
+	border-radius: 50%;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+}
+
+.div5 {/*选项卡*/
+	grid-area: 2 / 1 / 3 / 2;
+	box-sizing:border-box;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-color: rgb(230,230,230);
+}
+
+.div6 {/*内容*/
+	grid-area: 2 / 2 / 3 / 4;
+	height: 700px;
+}
+
+.parent2 {
+	background-color: rgb(250, 250, 250);
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	grid-template-rows: repeat(2, 1fr) repeat(2, 0.3fr) 0.3fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	text-align: center;
+}
+
+.div8 {/*图片位置*/
+	grid-area: 1 / 1 / 6 / 2;
+}
+
+.pixiv{/*图片盒子*/
+	box-sizing:border-box;
+	height: 700px;
+	max-width: 1000px;
+}
+
+#pixivimg{
+	height: 700px;
+	max-width: 1000px;
+}
+
+.div9 {/*文本内容*/
+	grid-area: 1 / 2 / 3 / 3;
+	margin: 0 auto;
+}
+
+.illustrate{
+	width: 75%;
+	background-color: #fff1c0;/*背景颜色*/
+	background-clip: content-box;/*背景裁剪至,content-box: 内容框.padding-box: 内边距框.border-box: 外边框*/
+	margin: 0 auto;/*元素居中*/
+	border-image:url(../imgs/bubble.png) 15 25 stretch;/*图片边框,选择边框四周保留范围，其他范围会被自动处理,stretch为拉伸*/
+	border-style: solid;/*添加边框样式*/
+ 	border-width: 15px 25px;/*边框大小,图片边框建议与保留部分一致*/
+}
+
+.div10 {/*刷新键*/
+	grid-area: 3 / 2 / 4 / 3;
+}
+.div11 {/*翻页按键*/
+	grid-area: 4 / 2 / 5 / 3;
+	margin: 0 auto;
+}
+
+.but{/*按键并排*/
+	float: left;
+}
+
+#buts{
+	display: none;
+}
+
+.div12 {/*图片链接*/
+	grid-area: 5 / 2 / 6 / 3;
+}
+
+
+.div7 {/*底部声明*/
+	grid-area: 3 / 1 / 4 / 4;
+	text-align: center;
+	background-color: rgb(200,200,200);
+}
