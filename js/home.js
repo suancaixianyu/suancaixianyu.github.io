@@ -4,7 +4,6 @@ function userAgent() {
 	var url = "https://suancaixianyu.github.io/home.html";    
 	$(location).attr('href',url);
 	}
-	$("#home").show();
 }
 
 function home() {
