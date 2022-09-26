@@ -1,7 +1,7 @@
 function userAgent() {
 	if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
   	// 当前设备是移动设备
-	var url = "suancaixianyu.github.io";    
+	var url = "home.html";    
 	$(location).attr('href',url);
 	}
 	$("#home").show();
