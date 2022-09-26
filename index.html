@@ -3,196 +3,89 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<title>咸鱼的学习站点</title>
+	<link rel="stylesheet" type="text/css" href="css/ceshi.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="js/home.js" ></script>
+	<title>咸鱼学习站点</title>
 </head>
-<body onload="RandomImgs('Random')">
-	<h1>主页</h1><a id="主页">
-		<h2>
-			<a class="md" href="#随机图片">随机图片</a><br>
-			<a class="md" href="#pid解析">pid解析</a><br>
-			<a class="md" href="#随机色图">随机色图</a><br>
-			<a class="md" href="#资源存放">资源存放，可用的api</a><br>
-			<a class="md" href="px.html">pid查看</a><br>
-			<a class="md" href="login.html">一个不存在的登录界面</a>
-		</h2>
-		<p>总访问次数：</p>
-		<img id="thme" src="https://api.moedog.org/count/@:xianyu?theme=rule34" alt="图片计数" />
 
-	<HR align=center width=90% color=#987cb9 SIZE=1>
-
-	<h1><a id="随机图片">随机图片</h1>
-		<div>
-			<button id="刷新图片" onclick="imgs()">刷新图片</button><br>
-				<img src="https://iw233.cn/api.php?sort=yin" id="img1" width="50%" height="auto">
-			<script>
-				function imgs()
-					{//刷新随机图片
-						var url=Math.random();
-						document.getElementById("img1").src='https://iw233.cn/api.php?sort=yin'+ '&u=' + url ;
-					}
-			</script>
+<body onload="userAgent()">
+	<div class="parent">
+		<div class="div1"></div>
+		<div class="div2">
+			<div class="set"></div>
 		</div>
-
-	<HR align=center width=90% color=#987cb9 SIZE=1>
-
-	<h1><a id="pid解析">图片查看</h1>
-		<p>输入i.pixiv.re的图查看</p>
-		输入图片直链: <input type="text" id="imgurl" value=""><br>
-			<button onclick="imgtool('look')">查看</button>
-			<button onclick="imgtool('del')">清空</button><br>
-		当前页: <input type="text" id="p" value="0">
-			<button onclick="imgtool('dw')">下一页</button>
-			<button onclick="imgtool('up')">上一页</button>
-			<button onclick="imgtool('jump')">跳转至</button><br>
-		<a id="imgtoolurl" href=""><img src="https://iw233.cn/api.php?sort=cat" id="imgs" width="80%" height="auto"></a>
-
-		<script>
-			function imgtool(air) {
-				var url = document.getElementById("imgurl").value;//获取图片直链
-				var jpg = url.replace(/.*_p\d+/g,"");//获取后缀
-				var id = url.replace(/.*_/g,"");
-				var id = id.replace(/[^0-9+]/g,"");//获取链接P数
-				var p = document.getElementById("p").value;//获取当前P数
-				var id1 = parseInt(p)+1;//下一页的P数
-				var id2 = parseInt(p)-1;//上一页的P数
-				var imgurl = url.replace(/_p.*/g,"");//获取无后缀图片连接
-				if (air=='look') {//加载链接
-					document.getElementById("imgs").src = url;
-					document.getElementById("p").value = id;
-				}
-				else if (air=='del') {//清空链接
-					document.getElementById("imgurl").value = "";
-				}
-				else if (air=='dw') {//下一页
-					document.getElementById("imgs").src = imgurl + '_p' + id1 + jpg;
-					document.getElementById("imgurl").value = imgurl + '_p' + id1 + jpg;
-					document.getElementById("imgtoolurl").href = imgurl + '_p' + id1 + jpg;
-					document.getElementById("p").value = id1;
-				}
-				else if (air=='up'&p!=0) {//上一页
-					document.getElementById("imgs").src = imgurl + '_p' + id2 + jpg;
-					document.getElementById("imgurl").value = imgurl + '_p' + id2 + jpg;
-					document.getElementById("imgtoolurl").href = imgurl + '_p' + id2 + jpg;
-					document.getElementById("p").value = id2;
-				}
-				else if (air=='jump'&p>=0) {//跳转至某一页
-					document.getElementById("imgs").src = imgurl + '_p' + p + jpg;
-					document.getElementById("imgurl").value = imgurl + '_p' + p + jpg;
-					document.getElementById("imgtoolurl").href = imgurl + '_p' + p + jpg;
-				}
-				
-			}
-		</script>
-
-	<HR align=center width=90% color=#987cb9 SIZE=1>
-
-	<h1><a id="随机色图">随机色图</h1>
-		<div>
-			<div id="illustrate">
-				<p>搜图有bug，慎用</p>
-				<p id="title">标题：</p>
-				<p id="pid">作品ID：</p>
-				<p id="author">作者：</p>
-				<p id="uid">作者ID：</p>
-				<p id="page"></p>
-				<p id="WH">图片尺寸：</p>
-				<p id="tags">标签：</p>
+		<div class="div3">
+			<div class="logo">
+				<h2>冷静沉着，认真学习</h2>
 			</div>
-			<button onclick="RandomImgs('Random')">冲冲冲！！！</button><br>
-			<input type="text" name="输入框" id="q">
-			<button onclick="RandomImgs('acgmx')">搜索</button><br>
-			<a id="pixivurl" href=""><img src="https://iw233.cn/api.php?sort=yin" id="pixivimg" width="80%" height="auto"></a>
+		</div>
+		<div class="div4">
+			<div class="user"></div>
+		</div>
+		<div class="div5"><!--选项卡-->
+			<button class="list" id="homebut" onclick="home()">主页</button><br>
+			<button class="list" id="ranbut" onclick="Random_picture()">随机图</button><br>
+			<button class="list" id="ran_exbut" onclick="Random_picture_ex()">随机涩图</button>
+		</div>
+		<div class="div6">
+			<div id="home"><!--主页内容-->
+				桌面端还没做好<br>
+				请自行跳转至手机端页面：<a href="home.html">点击跳转</a>
+			</div>
 
-			<script>
-				function RandomImgs(max){
-					if (max=="Random") {
-					    document.getElementById("tags").innerHTML = "";
-						var pixiv = new XMLHttpRequest();//建立所需的对象
-						pixiv.open('GET', 'https://ovooa.com/API/Pximg/', true);//打开链接
-						pixiv.send();//发送请求
-						pixiv.onreadystatechange = function () {
-							if (pixiv.readyState == 4 && pixiv.status == 200) {
-								var json = pixiv.responseText;//获取文本
-								obj = JSON.parse(json);//转换为json字符串
-								//获取数据
-								document.getElementById("title").innerHTML = "标题："+obj.data.title;
-								document.getElementById("pid").innerHTML = "作品ID："+obj.data.pid;
-								document.getElementById("author").innerHTML = "作者："+obj.data.author;
-								document.getElementById("uid").innerHTML = "作者ID："+obj.data.uid;
-								document.getElementById("page").innerHTML = "";
-								document.getElementById("WH").innerHTML = "图片尺寸："+obj.data.width+"*"+obj.data.height;
-								document.getElementById("pixivimg").src = "https://px3.rainchan.win/img/original/"+obj.data.pid;
-								document.getElementById("pixivurl").href = obj.data.urls.original;
-								for (var i = 0; i < obj.data.tags.length; i++) {
-									var x = obj.data.tags[i] + "；";
-									var y = document.getElementById("tags").innerHTML;
-									document.getElementById("tags").innerHTML = y+x;
-								}
-							}
-						}
-					}
-					else if (max=="acgmx") {
-						document.getElementById("tags").innerHTML = "";
-						var acgmx = new XMLHttpRequest();
-						var q = document.getElementById("q").value;
-						acgmx.open('GET', 'https://api.acgmx.com/public/search?q=' + q + '&offset=100', true);
-						acgmx.send();
-						acgmx.onreadystatechange = function () {
-							var acgx = acgmx.responseText;
-							obj = JSON.parse(acgx);
-							var a = Math.floor(Math.random()*80);
-							document.getElementById("title").innerHTML = "标题："+obj.illusts[a].title;
-							document.getElementById("pid").innerHTML = "作品ID："+obj.illusts[a].id;
-							document.getElementById("author").innerHTML = "作者："+obj.illusts[a].user.name;
-							document.getElementById("uid").innerHTML = "作者ID："+obj.illusts[a].user.id;
-							document.getElementById("page").innerHTML = "共有："+obj.illusts[a].page_count+"P";
-							document.getElementById("WH").innerHTML = "图片尺寸："+obj.illusts[a].width+"*"+obj.illusts[a].height;
-							document.getElementById("pixivimg").src = "https://px3.rainchan.win/img/original/"+obj.illusts[a].id;
-							document.getElementById("pixivurl").href = "https://px3.rainchan.win/img/original/"+obj.illusts[a].id;
-							for (var i = 0; i < obj.illusts[a].tags.length; i++) {
-								var x = obj.illusts[a].tags[i].name + "；";
-								var y = document.getElementById("tags").innerHTML;
-								document.getElementById("tags").innerHTML = y+x;
-							}
-						}
-					}
-				}
-			</script>
+			<div id="Random_picture"><!--随机图片内容-->
+				<button id="刷新图片" onclick="imgs()">刷新图片</button><br>
+				<img src="https://iw233.cn/api.php?sort=yin" id="img1" width="auto" height="580px">
+			</div>
 
-	<HR align=center width=90% color=#987cb9 SIZE=1>
+			<div id="Random_picture_ex"><!--随机图片内容-->
+				<div id="illustrate">
+					<div class="parent2">
+						<div class="div8"><!--图片显示-->
+							<div class="pixiv">
+								<img src="https://iw233.cn/api.php?sort=yin" id="pixivimg">
+							</div>
+						</div>
+						<div class="div9"><!--图片信息-->
+							<div class="illustrate">
+								<p id="title">输入pid可查看详情</p>
+								<p id="pid">当有多p时可翻页</p>
+								<p id="author">注意身体</p>
+								<p id="uid"></p>
+								<p id="WH"></p>
+								<p id="pageCount"></p>
+								<p id="tags"></p>
 
-	<h1><a id="资源存放">资源存放，用到的api</h1>
-		<p>
+							</div>
+						</div>
+						<div class="div10"><!--刷新按键  64293064-->
+							<button onclick="RandomImgs('Random')">冲冲冲！！！</button>
+						</div>
+						<div class="div11"><!--翻页按键-->
+							输入pid<input type="text" id="q" value="59580629"><button onclick="acgmx()">查看</button><br>
+							<div id="buts">
+								<button onclick="imgtool('up')" class="but"><</button>
+								<div id="p" class="but">0</div>
+								<button onclick="imgtool('wd')" class="but">></button>
+							</div>
+						</div>
+						<div class="div12">
+							<p id="pages"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--内容区域-->
+		<div class="div7"><!--底部-->
+			<p>
+			用到的接口：<br>
 			pid详情：https://pximg.rainchan.win/imginfo?img_id=<br>
 			随机图：https://iw233.cn/api.php?sort=yin<br>
 			随机涩图：https://ovooa.com/API/Pximg/<br>
 			计数器：https://api.moedog.org/count/
 		</p>
-
-	<HR align=center width=90% color=#987cb9 SIZE=1>
-
-	<h1>动画</h1>
-		<p id="model">移动动画</p>
-			<div class="" id="div1">放大动画</div>
-			<button onclick="divname()">点击切换颜色</button>
-			<div class="div2" id="div2">切换此处颜色</div>
-		<script>
-			div1.onmouseenter = function (){
-    			div1.className = "newdiv1";
-    		};
-    		div1.onmouseleave = function (){
-    			div1.className = "div1";
-    		}
-    		function divname() {
-    			// 调用动画
-    			if (div2.className=="div2") {
-    				div2.className = "newdiv2";
-    			}
-    			else{
-    				div2.className = "div2";
-    			}
-    		}
-		</script>
+		</div>
+	</div>
 </body>
 </html>
