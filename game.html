@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="js/jquery-3.5.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/game.css">
+	<title>地图生成</title>
+</head>
+<body onload="clone(),hideMap(),map()">
+	<div class="parent">
+		<div class="div1">
+			<div class="terrain">
+				<table id="map" cellspacing="0px"></table>
+			</div>
+		</div>
+		<div class="div2">
+			<p id="end">人物不可移动至地图数据外</p>
+			<textarea id="nmn" class="lockable" placeholder="地图数据" style="resize:none" rows="12" cols="30">[[0,0,1,1,1,0,0,0],[0,0,1,4,1,0,0,0],[0,0,1,0,1,1,1,1],[1,1,1,3,0,3,4,1],[1,4,0,3,2,1,1,1],[1,1,1,1,3,1,0,0],[0,0,0,1,4,1,0,0],[0,0,0,1,1,1,0,0]]</textarea>
+			<button onclick="purge(),clone(),hideMap(),map()">重新加载地图</button>
+			<button onclick="grid()">显示网格</button>
+			<p id="map1"></p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+/*
+		0：空
+		1：墙面
+		2：玩家
+		3：箱子
+		4：终点
+*/
+		//[[1,1,1,1,1,0,0,0,0,0,0,0],[1,0,0,4,1,1,1,0,0,0,0,0],[1,0,0,1,1,4,1,1,1,1,0,0],[1,1,0,0,0,0,0,0,0,1,0,0],[0,1,0,1,1,0,1,3,0,1,1,0],[0,1,3,0,0,0,0,0,0,0,1,0],[0,1,0,0,1,0,0,1,1,2,1,0],[0,1,1,1,0,0,0,0,0,1,1,0],[0,1,1,0,3,0,1,3,0,1,0,0],[0,1,0,0,0,0,1,0,1,1,0,0],[0,1,4,1,1,1,1,4,1,0,0,0],[0,1,1,1,1,1,1,1,1,0,0,0]]
+
+		//初始化地图
+		for (let i = 0; i < 12; i++) {
+			$("#map").append("<tr></tr>");
+			for (let k = 0; k < 12; k++) {
+				$("#map tr:last").append("<td class=\"col" + k + " row" + i + "\"></td>");
+			}
+		};
+
+		//缓存地图数据
+		function clone() {
+			let json = document.getElementById("nmn").value;
+			document.getElementById("map1").innerHTML = json;
+		}
+
+		//生成地图
+		function map() {
+			let json = document.getElementById("map1").innerHTML;
+			let map1 = JSON.parse(json);
+			for (let i = 0; i < map1.length; i++) {
+				$("#map").append("<tr></tr>");
+				for (let k = 0; k < map1.length; k++) {
+					if (map1[i][k]==1) {
+						led_on(i,k);
+					}
+					else if (map1[i][k]==2) {
+						play(i,k);
+					}
+					else if (map1[i][k]==3) {
+						box(i,k);
+					}
+					else if (map1[i][k]==4) {
+						target(i,k);
+					}
+				}
+			}
+		}
+
+		function led_on(y,x) {
+			//生成墙
+			$(".row" + y + ".col" + x).addClass("led_on");
+		}
+
+		function play(y,x) {
+			//生成玩家
+			$(".row" + y + ".col" + x).addClass("play");
+			$(".play").attr("x",x);
+			$(".play").attr("y",y);
+		}
+
+		function box(y,x) {
+			//生成箱子
+			$(".row" + y + ".col" + x).addClass("box");
+		}
+
+		function target(y,x) {
+			//生成终点
+			$(".row" + y + ".col" + x).addClass("target");
+		}
+
+		//点击生成墙
+		$("td").on("mousedown",function(){
+			let val1 =$(this).attr("class").indexOf("led_on");
+			let val2 =$(this).attr("class").indexOf("play");
+			let val3 =$(this).attr("class").indexOf("box");
+			let val4 =$(this).attr("class").indexOf("target");
+
+			if(val1==-1&&val2==-1&&val3==-1&&val4==-1)
+			{
+				$(this).addClass("led_on");
+			}
+			else if (val1!=-1&&val2==-1&&val3==-1&&val4==-1)
+			{
+				$(this).removeClass("led_on");
+				$(this).addClass("play");
+			}
+      else if (val1==-1&&val2!=-1&&val3==-1&&val4==-1)
+      {
+      	$(this).removeClass("play");
+				$(this).addClass("box");
+			}
+			else if (val1==-1&&val2==-1&&val3!=-1&&val4==-1)
+			{
+      	$(this).removeClass("box");
+				$(this).addClass("target");
+			}
+			else if (val1==-1&&val2==-1&&val3==-1&&val4!=-1)
+			{
+      	$(this).removeClass("target");
+			}
+    });
+
+		
+		function hideMap() {
+			// 隐藏地图缓存
+			$("#map1").hide();
+		}
+
+		function grid() {
+			//显示网格
+			if($("#map").attr("cellspacing")=="1px"){
+				$("#map").attr("cellspacing","0px");
+			} else {
+				$("#map").attr("cellspacing","1px");
+			}
+		}
+
+		function purge() {
+			// 清空地图
+			$("td").removeClass("target");
+			$("td").removeClass("box");
+			$("td").removeClass("play");
+			$("td").removeClass("led_on");
+			$("td").removeAttr("style");
+			$("#end").html("人物不可移动至地图数据外");
+		}
+
+		$(function() {
+			//键盘操作判断
+/*
+			87:w
+			65:a
+			83:s
+			68:d
+			38:上
+			40:下
+			37:左
+			39:右
+*/
+			$(document).keydown(function(e) {
+				switch(e.which){
+					case 87:
+					case 38:
+						move("up");
+						break;
+					case 65:
+					case 37:
+						move("left");
+						break;
+					case 83:
+					case 40:
+						move("down");
+						break;
+					case 68:
+					case 39:
+						move("right");
+						break;
+				}
+			});
+		});
+
+		function move(goal) {
+			//玩家移动
+/*
+变量说明：
+x，y：玩家当前x，y坐标
+goal_x，goal_y：玩家下一步的x，y坐标
+goal_x_box，goal_y_box：箱子下一步的x，y坐标
+*/
+			let json = document.getElementById("map1").innerHTML;
+			let map1 = JSON.parse(json);
+			let x = $(".play").attr("x");
+			let y = $(".play").attr("y");
+
+			if (goal=="up") {
+				var goal_x = x;
+				var goal_y = +y-1;
+				var goal_y_box = +y-2;
+				if ($(".play").attr("y")==0) {
+					console.log("不可移动");
+					var goal = 1;
+				}
+			} else if (goal=="left") {
+				var goal_x = +x-1;
+				var goal_y = y;
+				var goal_x_box = +x-2;
+				if ($(".play").attr("x")==0) {
+					console.log("不可移动");
+					var goal = 1;
+				}
+			} else if (goal=="down") {
+				var goal_x = x;
+				var goal_y = +y+1;
+				var goal_y_box = +y+2;
+				if ($(".play").attr("y")==map1.length-1) {
+					console.log("不可移动");
+					var goal = 1;
+				}
+			} else if (goal=="right") {
+				var goal_x = +x+1;
+				var goal_y = y;
+				var goal_x_box = +x+2;
+				if ($(".play").attr("x")==map1[y].length-1) {
+					console.log("不可移动");
+					var goal = 1;
+				}
+			}
+			if (goal!=1) {
+				if ($(".row"+goal_y+".col"+goal_x).attr("class").indexOf("led_on")==-1&&$(".row"+goal_y+".col"+goal_x).attr("class").indexOf("box")==-1) {
+					//为空，可以移动
+					console.log("移动");
+					new_play_loc(goal_y,goal_x);
+				}
+				else if ($(".row"+goal_y+".col"+goal_x).attr("class").indexOf("box")!=-1) {
+					//有箱子
+					if (goal=="up"||goal=="down") {
+						push_box(goal_y_box,goal_x_box,goal_y,goal_x,y,x,"y",map1);
+					} else {
+						push_box(goal_y_box,goal_x_box,goal_y,goal_x,y,x,"x",map1);
+					}
+				}
+			}
+		}
+
+		function new_play_loc(y,x) {
+			//更新玩家位置
+			$(".play").removeClass("play");
+			$(".row" + y + ".col" + x).addClass("play");
+			$(".play").attr("y",y);
+			$(".play").attr("x",x);
+			if ($(".row"+y+".col"+x).attr("class").indexOf("target")!=-1) {
+				//玩家在终点，移除颜色
+				$(".row"+y+".col"+x).removeAttr("style");
+			}
+			//调用胜利判断
+			end();
+		}
+
+		function push_box(goal_y_box,goal_x_box,goal_y,goal_x,y,x,trend,map1) {
+			// 移动箱子
+			if (trend=="y") {
+				//y轴
+				if (goal_y_box < 0 || goal_y_box == map1[y].length) {
+					//箱子前方是边界，不可移动
+					console.log("不可移动");
+				}
+				else if ($(".row"+goal_y_box+".col"+x).attr("class").indexOf("led_on")!=-1) {
+					//箱子前方是墙，不可移动
+					console.log("不可移动");
+				} else {
+					//箱子可以移动
+					console.log("推动箱子");
+					$(".row"+goal_y+".col"+goal_x).removeClass("box");
+					$(".row"+goal_y_box+".col"+x).addClass("box");
+					new_play_loc(goal_y,goal_x);
+					if ($(".row"+goal_y_box+".col"+x).attr("class").indexOf("target")!=-1) {
+					//是终点，需要变换样式
+					$(".row"+goal_y_box+".col"+x).css("background-image","url('imgs/target_on.png')");
+					}
+				}
+			}
+			else {
+				//x轴
+				if (goal_x_box < 0 || goal_x_box == map1[x].length) {
+					//箱子前方是边界，不可移动
+					console.log("不可移动");
+				}
+				else if ($(".row"+y+".col"+goal_x_box).attr("class").indexOf("led_on")!=-1) {
+					//箱子前方是墙，不可移动
+					console.log("不可移动");
+				} else {
+					//箱子可以移动
+					console.log("推动箱子");
+					$(".row"+goal_y+".col"+goal_x).removeClass("box");
+					$(".row"+y+".col"+goal_x_box).addClass("box");
+					new_play_loc(goal_y,goal_x);
+					if ($(".row"+y+".col"+goal_x_box).attr("class").indexOf("target")!=-1) {
+					//是终点，需要变换样式
+					$(".row"+y+".col"+goal_x_box).css("background-image","url('imgs/target_on.png')");
+					}
+				}
+			}
+		}
+
+		function end() {
+			// 胜利判断
+			let json = document.getElementById("map1").innerHTML;
+			let map1 = JSON.parse(json);
+			var j = 0;
+			for (let i = 0; i < 8; i++) {
+				for (let k = 0; k < 8; k++) {
+					if (map1[i][k]==4) {
+						if ($(".row"+i+".col"+k).attr("class").indexOf("box")==-1)j++;
+					}
+				}
+			}
+			if (j == 0) {
+				$("#end").html("恭喜过关");
+			}
+		}
+	</script>
+</body>
+</html>
