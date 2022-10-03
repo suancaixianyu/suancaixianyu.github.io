@@ -1,0 +1,41 @@
+body{
+  margin: 0;
+}
+
+.led_on{
+  background-image: url("../imgs/qiang.png");
+}
+
+td {
+  width: 30px;
+  height: 30px;
+  background-image: url("../imgs/led.png");
+}
+
+.play{
+  background-image: url("../imgs/play.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.box{
+  background-image: url("../imgs/box.png");
+}
+
+.target{
+  background-image: url("../imgs/target.png");
+}
+
+.parent {
+display: grid;
+grid-template-columns: 3fr 0.5fr;
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+  place-self: center;
+}
+.div2 { grid-area: 1 / 2 / 2 / 3; }
