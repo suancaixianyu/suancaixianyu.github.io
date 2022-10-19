@@ -83,11 +83,11 @@ function acgmx(){
 				obj = JSON.parse(json);//转换为json字符串
 				if (obj.urls.original=="") {
 					var str = obj.profileImageUrl;
-					var original = str.replace("i.pximg.net","i.pixiv.re");
+					var original = str.replace("i.pximg.net","i.acgmx.com");
 				}
 				else if (obj.urls.original!=""){
 					var str = obj.urls.original;
-					var original = str.replace("i.pximg.net","i.pixiv.re");
+					var original = str.replace("i.pximg.net","i.acgmx.com");
 				}
 			//获取数据
 			document.getElementById("title").innerHTML = "标题："+obj.title;
