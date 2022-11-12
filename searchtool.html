@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>emmm</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="js/px.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/px.css">
+</head>
+
+<body>
+	<div class="detail_bj" onclick="detail_bj()"></div>
+	<div class="parent">
+		<div class="div1"> </div>
+		<div class="div2">
+			<div>
+				<nav>
+					<select>
+						<option>搜索插画</option>
+						<option>搜索用户</option>
+						<option>搜索漫画</option>
+					</select>
+				</nav>
+			</div>
+		</div>
+
+		<div class="div3">
+			<div>
+				<input type="search" placeholder="搜索关键词" id="word">
+				<button onclick="acgmx()">
+					<img src="search.svg" alt="搜索" width="20px" height="20px">
+				</button>
+			</div>
+		</div>
+
+		<div class="div4">
+
+			<div>
+				<div>
+					<button onclick="menu()">菜单</button>
+				</div>
+				<div>
+					搜索范围
+					<input type="text" id="min" value="1" οnfοcus="this.select()">-
+					<input type="text" id="max" value="50" οnfοcus="this.select()">
+				</div>
+			</div>
+
+			<div class="menu">
+				<nav>
+					<div>如果搜图没反应，访问一下这个网址再回来<a href="https://43.249.193.233:31841">跳转</a><br>目前只有图源是生效的</div>
+					<div>搜索类型
+						<select class="sel1">
+							<option>插画</option>
+							<option>漫画</option>
+							<option>用户</option>
+						</select>
+					</div>
+
+					<div>排序方式
+						<select class="sel2">
+							<option>最新作品</option>
+							<option>由旧到新</option>
+							<option>热门度顺序</option>
+							<option>受男性欢迎</option>
+							<option>受女性欢迎</option>
+						</select>
+					</div>
+
+					<div>图源
+						<select class="sel3">
+							<option>i.acgmx.com</option>
+							<option>i.pixiv.re</option>
+							<option>px3</option>
+							<option>pixiv.cat</option>
+						</select>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<div class="div6">
+		
+	</div>
+
+	<div class="div7">
+		<div class="bj">
+			<button onclick="ret()">X</button>
+			<img src="">
+			<div>
+				<p>12345</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
