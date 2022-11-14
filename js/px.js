@@ -5,7 +5,7 @@ function acgmx() {
 	let min = $('#min').val();
 	let word = $('#word').val();
 	let d = Math.floor(Math.random() * (max - min) ) + +min;
-	let url = 'http://47.109.90.221:81?'+'type=search&word='+word+'&page='+d;
+	let url = 'https://43.249.193.233:40526?'+'type=search&word='+word+'&page='+d;
 
 	let pixiv = new XMLHttpRequest();//建立所需的对象
 	pixiv.open('GET', url, true);//打开链接
