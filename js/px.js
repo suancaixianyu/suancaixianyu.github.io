@@ -32,7 +32,7 @@ function acgmx() {
 						var imgurl1 = 'https://px3.rainchan.win/img/original/'+obj.illusts[i].id;
 						var imgurl = 'https://px3.rainchan.win/img/original/'+obj.illusts[i].id;
 					} else {
-						var str1 = obj.illusts[i].image_urls.large;
+						var str1 = obj.illusts[i].image_urls.original;
 						var imgurl = str1.replace('i.pximg.net',sel);
 					}
 					//生成图片
